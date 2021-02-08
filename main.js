@@ -15,6 +15,12 @@ function createWindow() {
     mainWindow.loadFile('index.html');
     mainWindow.once('ready-to-show', () => {
         log.info("checking for updates")
+        autoUpdater.setFeedURL({
+            provider: 'github',
+            owner: "sanskarsakya",
+            repo: "autoupdate",
+            token: "ee99cf9e2c0ae4362871c6af1b81c76d1b8bf87f",
+        });
         autoUpdater.checkForUpdates();
     })
     mainWindow.on('closed', function() {

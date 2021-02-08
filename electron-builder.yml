@@ -1,4 +1,4 @@
 appId: com.puzan.autoupdate
 publish:
   provider: github
-  token: dc8a7f37427fce18cdb1504f54cfceb58d2edc70
+  token: ee99cf9e2c0ae4362871c6af1b81c76d1b8bf87f
