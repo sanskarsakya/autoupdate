@@ -1,4 +1,5 @@
-const { app, BrowserWindow, ipcMain, autoUpdater } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
+const { autoUpdater } = require('electron-updater');
 
 const log = require('electron-log');
 
@@ -14,14 +15,11 @@ function createWindow() {
     });
     mainWindow.loadFile('index.html');
     mainWindow.once('ready-to-show', () => {
-        log.info("checking for updates")
-        autoUpdater.setFeedURL({
-            provider: 'github',
-            owner: "sanskarsakya",
-            repo: "autoupdate",
-            token: "ee99cf9e2c0ae4362871c6af1b81c76d1b8bf87f",
-        });
-        autoUpdater.checkForUpdates();
+        log.info("checking for updates");
+        log.transports.file.level = "debug";
+        autoUpdater.logger = log;
+
+        autoUpdater.checkForUpdatesAndNotify();
     })
     mainWindow.on('closed', function() {
         mainWindow = null;
